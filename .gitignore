@@ -1,32 +1,76 @@
-# Prerequisites
-*.d
+#include <iostream>
+using namespace std;
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+// sčítání
+double scitani(double x, double y) {
+    return x + y;
+}
 
-# Precompiled Headers
-*.gch
-*.pch
+// odčítání
+double odcitani(double x, double y) {
+    return x - y;
+}
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+// násobení
+double nasobeni(double x, double y) {
+    return x * y;
+}
 
-# Fortran module files
-*.mod
-*.smod
+// dělení
+double deleni(double x, double y) {
+    if (y != 0)
+        return x / y;
+    else {
+        cout << "Chyba! Dělení nulou není povoleno." << endl;
+        return 0;
+    }
+}
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
+int main() {
+    int volba;
+    double cislo1, cislo2;
 
-# Executables
-*.exe
-*.out
-*.app
+    while (true) {
+        // Zobrazení menu
+        cout << "Vyberte operaci:" << endl;
+        cout << "1. Sčítání" << endl;
+        cout << "2. Odčítání" << endl;
+        cout << "3. Násobení" << endl;
+        cout << "4. Dělení" << endl;
+        cout << "5. Konec" << endl;
+        cout << "Zadejte volbu (1/2/3/4/5): ";
+        cin >> volba;
+
+        if (volba == 5) {
+            cout << "Konec kalkulačky. Nashledanou!" << endl;
+            break;
+        }
+
+        if (volba < 1 || volba > 5) {
+            cout << "Neplatná volba, zkuste to znovu." << endl;
+            continue;
+        }
+
+        cout << "Zadejte první číslo: ";
+        cin >> cislo1;
+        cout << "Zadejte druhé číslo: ";
+        cin >> cislo2;
+
+        switch (volba) {
+            case 1:
+                cout << cislo1 << " + " << cislo2 << " = " << scitani(cislo1, cislo2) << endl;
+                break;
+            case 2:
+                cout << cislo1 << " - " << cislo2 << " = " << odcitani(cislo1, cislo2) << endl;
+                break;
+            case 3:
+                cout << cislo1 << " * " << cislo2 << " = " << nasobeni(cislo1, cislo2) << endl;
+                break;
+            case 4:
+                cout << cislo1 << " / " << cislo2 << " = " << deleni(cislo1, cislo2) << endl;
+                break;
+        }
+    }
+
+    return 0;
+}
